@@ -1,4 +1,4 @@
-import '../pages/library.dart';
+import '../pages/library/library.dart';
 
 class AppRoutes {
   static const String HOME = '/';

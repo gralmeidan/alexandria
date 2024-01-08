@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../cubit/search_cubit.dart';
+import '../../../components/components.dart';
+import '../../../stores/stores.dart';
 
 class LibraryAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
@@ -39,12 +40,7 @@ class _LibraryAppBarState extends State<LibraryAppBar> {
     Widget? leading;
 
     if (_isSearchOpen) {
-      title = TextField(
-        autofocus: true,
-        decoration: const InputDecoration(
-          hintText: 'Search',
-          border: InputBorder.none,
-        ),
+      title = SearchInput(
         controller: _searchController,
         onChanged: (value) {
           context.query.updateSearch(value);
@@ -52,7 +48,6 @@ class _LibraryAppBarState extends State<LibraryAppBar> {
         onSubmitted: (value) {
           context.search.openSearch();
         },
-        textInputAction: TextInputAction.search,
       );
 
       leading = IconButton(

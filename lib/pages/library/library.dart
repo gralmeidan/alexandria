@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lib_browser_extensions/lib_browser_extensions.dart';
 
-import 'cubit/search_cubit.dart';
-import 'widgets/hyperlink.dart';
+import '../../components/components.dart';
+import '../../stores/stores.dart';
 import 'widgets/library_app_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,7 +18,7 @@ class _MyHomePageState extends State<HomePage> {
     return MultiBlocProvider(
       providers: [
         QueryCubit.provider(),
-        SearchCubit.provider(),
+        ResultsCubit.provider(),
       ],
       child: Scaffold(
         appBar: const LibraryAppBar(),
@@ -41,7 +40,7 @@ class _MyHomePageState extends State<HomePage> {
                 );
               },
             ),
-            BlocBuilder<SearchCubit, SearchState>(
+            BlocBuilder<ResultsCubit, SearchState>(
               builder: (_, state) {
                 return Expanded(
                   child: ListView.builder(

@@ -124,7 +124,7 @@ packages:
     source: hosted
     version: "4.0.2"
   lib_browser_extensions:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       path: "../ext"
       relative: true

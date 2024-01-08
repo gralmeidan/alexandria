@@ -3,30 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lib_browser_extensions/lib_browser_extensions.dart';
 
 import '../../repositories/search.repository.dart';
+import 'query.store.dart';
 
-class QueryCubit extends Cubit<String> {
-  QueryCubit() : super('');
-
-  void updateSearch(String value) {
-    emit(value);
-  }
-
-  static BlocProvider<QueryCubit> provider({
-    Key? key,
-    Widget? child,
-  }) {
-    return BlocProvider<QueryCubit>(
-      key: key,
-      create: (_) => QueryCubit(),
-      child: child,
-    );
-  }
-}
-
-class SearchCubit extends Cubit<SearchState> {
+class ResultsCubit extends Cubit<SearchState> {
   final BuildContext context;
 
-  SearchCubit(this.context) : super(SearchState());
+  ResultsCubit(this.context) : super(SearchState());
 
   void openSearch() async {
     state.groups.clear();
@@ -48,13 +30,13 @@ class SearchCubit extends Cubit<SearchState> {
     emit(state);
   }
 
-  static BlocProvider<SearchCubit> provider({
+  static BlocProvider<ResultsCubit> provider({
     Key? key,
     Widget? child,
   }) {
-    return BlocProvider<SearchCubit>(
+    return BlocProvider<ResultsCubit>(
       key: key,
-      create: (context) => SearchCubit(context),
+      create: (context) => ResultsCubit(context),
       child: child,
     );
   }
@@ -69,7 +51,6 @@ class SearchState {
   }
 }
 
-extension SearchCubitX on BuildContext {
-  QueryCubit get query => read<QueryCubit>();
-  SearchCubit get search => read<SearchCubit>();
+extension ResultsContext on BuildContext {
+  ResultsCubit get search => read<ResultsCubit>();
 }
