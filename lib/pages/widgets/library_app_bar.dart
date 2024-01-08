@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../cubit/search_cubit.dart';
+
 class LibraryAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
 
@@ -19,10 +21,16 @@ class _LibraryAppBarState extends State<LibraryAppBar> {
   final TextEditingController _searchController = TextEditingController();
   bool _isSearchOpen = false;
 
-  void _toggleSearch() {
+  void _setSearch(bool value) {
     setState(() {
-      _isSearchOpen = !_isSearchOpen;
+      _isSearchOpen = value;
     });
+  }
+
+  void _closeSearch() {
+    _setSearch(false);
+    _searchController.clear();
+    context.query.updateSearch('');
   }
 
   @override
@@ -38,12 +46,13 @@ class _LibraryAppBarState extends State<LibraryAppBar> {
           border: InputBorder.none,
         ),
         controller: _searchController,
+        onChanged: (value) {
+          context.query.updateSearch(value);
+        },
       );
 
       leading = IconButton(
-        onPressed: () {
-          _toggleSearch();
-        },
+        onPressed: _closeSearch,
         icon: const Icon(Icons.arrow_back),
       );
     } else {
@@ -56,7 +65,7 @@ class _LibraryAppBarState extends State<LibraryAppBar> {
       actions: [
         IconButton(
           onPressed: () {
-            _toggleSearch();
+            _setSearch(true);
           },
           icon: const Icon(Icons.search),
         ),
