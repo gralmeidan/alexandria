@@ -49,6 +49,10 @@ class _LibraryAppBarState extends State<LibraryAppBar> {
         onChanged: (value) {
           context.query.updateSearch(value);
         },
+        onSubmitted: (value) {
+          context.search.openSearch();
+        },
+        textInputAction: TextInputAction.search,
       );
 
       leading = IconButton(
