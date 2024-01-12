@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lib_browser_extensions/lib_browser_extensions.dart';
 
 import '../../repositories/search.repository.dart';
+import '../../routes/app_routes.dart';
 import 'query.store.dart';
 
 class ResultsCubit extends Cubit<SearchState> {
@@ -10,22 +13,21 @@ class ResultsCubit extends Cubit<SearchState> {
 
   ResultsCubit(this.context) : super(SearchState());
 
-  void openSearch() async {
-    state.groups.clear();
-    state.isSearchOpen = true;
-    emit(state);
+  void openSearch(BuildContext context) async {
+    emit(SearchState());
+
+    Navigator.of(context).pushNamed(AppRoutes.SEARCH_PAGE);
 
     final groups = await SearchRepository.search(
       context.query.state,
     );
+    log('Finish search');
 
-    state.groups.addAll(groups);
-    emit(state);
+    emit(SearchState(isLoading: false, groups: groups));
   }
 
   void closeSearch() {
-    state.groups.clear();
-    state.isSearchOpen = false;
+    emit(SearchState());
 
     emit(state);
   }
@@ -43,8 +45,13 @@ class ResultsCubit extends Cubit<SearchState> {
 }
 
 class SearchState {
-  final List<BookSearchGroup> groups = [];
-  bool isSearchOpen = false;
+  final List<BookSearchGroup> groups;
+  final bool isLoading;
+
+  SearchState({
+    this.groups = const [],
+    this.isLoading = true,
+  });
 
   String queryOf(BuildContext context) {
     return context.query.state;

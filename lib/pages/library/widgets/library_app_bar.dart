@@ -46,7 +46,7 @@ class _LibraryAppBarState extends State<LibraryAppBar> {
           context.query.updateSearch(value);
         },
         onSubmitted: (value) {
-          context.search.openSearch();
+          context.search.openSearch(context);
         },
       );
 
