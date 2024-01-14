@@ -1,5 +1,10 @@
+import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:lib_browser_extensions/lib_browser_extensions.dart';
+
+import '../../../../components/slivers/sliver_fixed_header.dart';
+import 'atoms/colored_label.dart';
+import 'atoms/result_list_tile.dart';
 
 class BookCard extends StatelessWidget {
   final BookSearchGroup group;
@@ -18,12 +23,45 @@ class BookCard extends StatelessWidget {
     if (group.results.length > 1) {
       coverLabel = Align(
         alignment: Alignment.topRight,
-        child: _AtomResultsLength(group.results.length),
+        child: AtomColoredLabel.length(group.results.length),
       );
     }
 
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        showFlexibleBottomSheet(
+          context: context,
+          minHeight: 0.2,
+          initHeight: 0.6,
+          maxHeight: 0.8,
+          bottomSheetBorderRadius: BorderRadius.circular(16),
+          builder: (_, controller, ___) {
+            return CustomScrollView(
+              controller: controller,
+              slivers: [
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: SliverFixedHeader(
+                    height: 32,
+                    child: const Divider(
+                      indent: 100,
+                      endIndent: 100,
+                      thickness: 4,
+                    ),
+                  ),
+                ),
+                SliverList.builder(
+                  itemCount: group.results.length,
+                  itemBuilder: (_, index) {
+                    final book = group.results[index];
+                    return AtomResultListTile(book);
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      },
       child: Container(
         padding: const EdgeInsets.all(8),
         width: 160,
@@ -62,37 +100,6 @@ class BookCard extends StatelessWidget {
               ],
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _AtomResultsLength extends StatelessWidget {
-  final String label;
-  final double horizontalPadding;
-
-  const _AtomResultsLength(
-    int length,
-  )   : label = length > 9 ? '9+' : '$length',
-        horizontalPadding = length > 9 ? 4 : 6;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: horizontalPadding,
-        vertical: 4,
-      ),
-      margin: const EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primaryContainer,
-        borderRadius: BorderRadius.circular(4),
-      ),
-      child: Text(
-        label,
-        style: const TextStyle(
-          fontSize: 14,
         ),
       ),
     );
