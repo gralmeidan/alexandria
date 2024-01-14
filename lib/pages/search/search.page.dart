@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../components/components.dart';
 import '../../stores/search/results.store.dart';
+import 'widgets/book_card.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -13,20 +14,53 @@ class SearchPage extends StatelessWidget {
       appBar: DefaultAppBar(),
       body: BlocBuilder<ResultsCubit, SearchState>(
         builder: (_, state) {
-          print(state.groups.length);
           if (state.isLoading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           }
 
+          final groups = state.groupEntries;
+
           return SizedBox(
             child: ListView.builder(
-              itemCount: state.groups.length,
+              itemCount: groups.length,
               itemBuilder: (_, index) {
-                final group = state.groups[index];
+                final group = groups[index];
 
-                return Text(group.title);
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 8,
+                        horizontal: 16,
+                      ),
+                      child: Text(
+                        group.key,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 286,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: group.value.length,
+                        itemBuilder: (_, index) {
+                          final books = group.value[index];
+
+                          return BookCard(
+                            books,
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                );
               },
             ),
           );

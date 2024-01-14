@@ -5,14 +5,13 @@ class SearchRepository {
     LibGenExtension(),
   ];
 
-  static Future<List<BookSearchGroup>> search(String query) async {
-    final groups = <BookSearchGroup>[];
+  static Future<Map<String, List<BookSearchGroup>>> search(String query) async {
+    final groups = <String, List<BookSearchGroup>>{};
 
     for (var extension in extensions) {
-      print('searching on ${extension.runtimeType}');
       final result = await extension.search(query);
 
-      groups.addAll(result);
+      groups[extension.name] = result;
     }
 
     return groups;

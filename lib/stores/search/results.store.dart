@@ -45,16 +45,20 @@ class ResultsCubit extends Cubit<SearchState> {
 }
 
 class SearchState {
-  final List<BookSearchGroup> groups;
+  final Map<String, List<BookSearchGroup>> groups;
   final bool isLoading;
 
   SearchState({
-    this.groups = const [],
+    this.groups = const {},
     this.isLoading = true,
   });
 
   String queryOf(BuildContext context) {
     return context.query.state;
+  }
+
+  List<MapEntry<String, List<BookSearchGroup>>> get groupEntries {
+    return groups.entries.toList();
   }
 }
 
