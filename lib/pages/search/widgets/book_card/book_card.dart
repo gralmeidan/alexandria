@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lib_browser_extensions/lib_browser_extensions.dart';
 
 import '../../../../components/slivers/sliver_fixed_header.dart';
+import '../../../details/details.page.dart';
 import 'atoms/colored_label.dart';
 import 'atoms/result_list_tile.dart';
 
@@ -36,28 +37,38 @@ class BookCard extends StatelessWidget {
           maxHeight: 0.8,
           bottomSheetBorderRadius: BorderRadius.circular(16),
           builder: (_, controller, ___) {
-            return CustomScrollView(
-              controller: controller,
-              slivers: [
-                SliverPersistentHeader(
-                  pinned: true,
-                  delegate: SliverFixedHeader(
-                    height: 32,
-                    child: const Divider(
-                      indent: 100,
-                      endIndent: 100,
-                      thickness: 4,
+            return Material(
+              child: CustomScrollView(
+                controller: controller,
+                slivers: [
+                  SliverPersistentHeader(
+                    pinned: true,
+                    delegate: SliverFixedHeader(
+                      height: 32,
+                      child: const Divider(
+                        indent: 100,
+                        endIndent: 100,
+                        thickness: 4,
+                      ),
                     ),
                   ),
-                ),
-                SliverList.builder(
-                  itemCount: group.results.length,
-                  itemBuilder: (_, index) {
-                    final book = group.results[index];
-                    return AtomResultListTile(book);
-                  },
-                ),
-              ],
+                  SliverList.builder(
+                    itemCount: group.results.length,
+                    itemBuilder: (_, index) {
+                      final book = group.results[index];
+                      return AtomResultListTile(
+                        book,
+                        onTap: () async {
+                          DetailsPage.push(
+                            context,
+                            book,
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ],
+              ),
             );
           },
         );

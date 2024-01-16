@@ -4,17 +4,17 @@ class AtomColoredLabel extends StatelessWidget {
   final String label;
   final double horizontalPadding;
 
-  const AtomColoredLabel.length(
-    int length, {
-    super.key,
-  })  : label = length > 9 ? '9+' : '$length',
-        horizontalPadding = length > 9 ? 4 : 6;
-
   const AtomColoredLabel(
     this.label, {
     super.key,
     this.horizontalPadding = 6,
   });
+
+  const AtomColoredLabel.length(
+    int length, {
+    super.key,
+  })  : label = length > 9 ? '9+' : '$length',
+        horizontalPadding = length > 9 ? 4 : 6;
 
   @override
   Widget build(BuildContext context) {
