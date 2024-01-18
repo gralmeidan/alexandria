@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
             brightness: Brightness.dark,
           ),
           appBarTheme: const AppBarTheme(
-            color: Colors.black38,
+            color: Colors.transparent,
             foregroundColor: Colors.white,
           ),
           scaffoldBackgroundColor: AppColors.background,

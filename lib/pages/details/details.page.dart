@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:lib_browser_extensions/lib_browser_extensions.dart';
 
-import '../../components/book/title_span.dart';
 import '../../components/components.dart';
-import '../../components/container/clipped_image.dart';
-import '../../components/text/text_expandable.dart';
-import '../../helpers/helpers.dart';
 import '../../repositories/search.repository.dart';
 import '../../routes/app_routes.dart';
-import 'widgets/minor_details/minor_details.dart';
+import 'widgets/book_header_info.dart';
+import 'widgets/minor_details.dart';
+import 'widgets/mirrors_list.dart';
 
 class DetailsPage extends StatefulWidget {
   static void push(BuildContext context, BookSearchResult book) {
@@ -52,92 +50,43 @@ class _DetailsPageState extends State<DetailsPage> {
       body: FutureBuilder(
         future: detailsFuture,
         builder: (_, snapshot) {
-          if (snapshot.hasData) {
-            final book = snapshot.data!;
-
-            return ListView(
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ClippedImage(
-                      url: book.cover ?? '',
-                      width: 100,
-                      height: 150,
-                    ),
-                    const SizedBox(width: 22),
-                    Flexible(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TitleSpan(
-                            title: book.title,
-                            edition: book.edition,
-                          ),
-                          if (book.publisher.isNotEmpty)
-                            Text(
-                              book.publisher,
-                              style: const TextStyle(
-                                color: Colors.grey,
-                              ),
-                            ),
-                          if (book.author.name.isNotEmpty)
-                            Text(
-                              book.author.name,
-                              style: const TextStyle(
-                                color: Colors.grey,
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                const Spacing(height: 12),
-                MinorDetails(details: book),
-                if (book.description != null)
-                  TextExpandable(
-                    book.description!,
-                  ),
-                // Mirrors
-                if (book.mirrors.isNotEmpty)
-                  Padding(
-                    padding: EdgeInsets.zero,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text('Mirrors'),
-                        const Spacing(
-                          child: Divider(),
-                        ),
-                        for (final mirror in book.mirrors) ...[
-                          InkWell(
-                            onTap: () {},
-                            child: Text(
-                              mirror.label,
-                            ),
-                          ),
-                        ],
-                      ],
-                    ),
-                  ),
-              ].toWidgetList(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 12,
-                ),
-              ),
-            );
-          } else if (snapshot.hasError) {
+          if (snapshot.hasError) {
             return Center(
               child: Text(snapshot.error.toString()),
             );
-          } else {
+          }
+
+          if (!snapshot.hasData) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           }
+
+          final book = snapshot.data!;
+
+          return CustomScrollView(
+            slivers: [
+              SliverPadding(
+                padding: const EdgeInsets.only(
+                  top: 16.0,
+                  right: 16.0,
+                  left: 16.0,
+                ),
+                sliver: SliverList.list(
+                  children: [
+                    BookHeaderInfo(details: book),
+                    const SizedBox(height: 22),
+                    MinorDetails(details: book),
+                    if (book.description != null) ...[
+                      const SizedBox(height: 16),
+                      TextExpandable(book.description!),
+                    ],
+                  ],
+                ),
+              ),
+              if (book.mirrors.isNotEmpty) MirrorsList(mirrors: book.mirrors),
+            ],
+          );
         },
       ),
     );
