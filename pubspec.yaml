@@ -28,6 +28,7 @@ dependencies:
   flutter_bloc: ^8.1.3
   lib_browser_extensions:
     path: ../ext
+  bottom_sheet: ^4.0.0
 
 dev_dependencies:
   flutter_test:
