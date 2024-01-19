@@ -1,6 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:lib_browser_extensions/lib_browser_extensions.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../controllers/configs.dart';
 
@@ -45,21 +46,60 @@ class _AtomMirrorListTile extends StatelessWidget {
     required this.mirror,
   });
 
+  void _showDialog(BuildContext context, [String? title, bool open = true]) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(title ?? mirror.label),
+          content: SelectableText(mirror.uri.toString()),
+          actions: [
+            if (open)
+              TextButton(
+                onPressed: () async {
+                  try {
+                    await launchUrl(mirror.uri);
+                  } catch (e) {
+                    if (context.mounted) {
+                      _showDialog(context, 'We had a problem opening your link', false);
+                    }
+                  }
+                },
+                child: const Text('Open'),
+              ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _handleClick(BuildContext context) async {
+    if (!mirror.hasAutodownload) {
+      return _showDialog(context);
+    }
+
+    try {
+      if (!AppConfigs.hasDir) {
+        AppConfigs.dir = await FilePicker.platform.getDirectoryPath();
+      }
+
+      if (context.mounted) {
+        await mirror.download(
+          context,
+          path: AppConfigs.dir,
+        );
+      }
+    } catch (e) {
+      if (context.mounted) {
+        _showDialog(context, 'We had a problem downloading this file.');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () async {
-        if (!AppConfigs.hasDir) {
-          AppConfigs.dir = await FilePicker.platform.getDirectoryPath();
-        }
-
-        if (context.mounted) {
-          await mirror.download(
-            context,
-            path: AppConfigs.dir,
-          );
-        }
-      },
+      onTap: () => _handleClick(context),
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
