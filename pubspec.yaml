@@ -29,6 +29,8 @@ dependencies:
   lib_browser_extensions:
     path: ../ext
   bottom_sheet: ^4.0.0
+  file_picker: ^6.1.1
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
