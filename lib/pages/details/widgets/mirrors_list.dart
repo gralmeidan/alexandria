@@ -1,5 +1,8 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:lib_browser_extensions/lib_browser_extensions.dart';
+
+import '../../../controllers/configs.dart';
 
 class MirrorsList extends StatelessWidget {
   final List<BookMirror> mirrors;
@@ -45,7 +48,18 @@ class _AtomMirrorListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () async {
+        if (!AppConfigs.hasDir) {
+          AppConfigs.dir = await FilePicker.platform.getDirectoryPath();
+        }
+
+        if (context.mounted) {
+          await mirror.download(
+            context,
+            path: AppConfigs.dir,
+          );
+        }
+      },
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 16,

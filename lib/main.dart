@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lib_browser_extensions/lib_browser_extensions.dart' as ext;
 
+import 'controllers/configs.dart';
 import 'routes/app_routes.dart';
 import 'stores/stores.dart';
 import 'styles/colors.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await ext.init();
+  await AppConfigs.init();
+
   runApp(const MyApp());
 }
 
