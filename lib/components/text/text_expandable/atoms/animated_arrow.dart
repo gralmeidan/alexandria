@@ -21,7 +21,7 @@ class _AtomAnimatedArrowState extends State<AtomAnimatedArrow> {
   void initState() {
     super.initState();
 
-    _animation = Tween<double>(begin: -1, end: 1).animate(
+    _animation = Tween<double>(begin: 1, end: -1).animate(
       CurvedAnimation(
         parent: widget.controller,
         curve: widget.curve,
