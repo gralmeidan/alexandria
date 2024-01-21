@@ -1,6 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:lib_browser_extensions/lib_browser_extensions.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../controllers/configs.dart';
@@ -77,6 +78,8 @@ class _AtomMirrorListTile extends StatelessWidget {
     if (!mirror.hasAutodownload) {
       return _showDialog(context);
     }
+
+    await Permission.manageExternalStorage.request();
 
     try {
       if (!AppConfigs.hasDir) {
