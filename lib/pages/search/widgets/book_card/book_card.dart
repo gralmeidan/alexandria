@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lib_browser_extensions/lib_browser_extensions.dart';
 
 import '../../../../components/slivers/sliver_fixed_header.dart';
+import '../../../../styles/text.dart';
 import '../../../details/details.page.dart';
 import 'atoms/colored_label.dart';
 import 'atoms/result_list_tile.dart';
@@ -103,9 +104,8 @@ class BookCard extends StatelessWidget {
                   book.author.name,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
+                  style: const AppStyle.subTitleSmall(
                     color: Colors.grey,
-                    fontSize: 12,
                   ),
                 ),
               ],

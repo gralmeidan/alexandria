@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lib_browser_extensions/lib_browser_extensions.dart';
 
+import '../../../styles/text.dart';
+
 class MinorDetails extends StatelessWidget {
   final BookDetails details;
 
@@ -66,9 +68,8 @@ class _AtomWithLabel extends StatelessWidget {
         child,
         Text(
           label,
-          style: const TextStyle(
+          style: const AppStyle.subTitleSmall(
             color: Colors.grey,
-            fontSize: 12,
           ),
         ),
       ],

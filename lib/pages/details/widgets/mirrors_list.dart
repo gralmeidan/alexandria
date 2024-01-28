@@ -5,6 +5,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../controllers/configs.dart';
+import '../../../styles/text.dart';
 
 class MirrorsList extends StatelessWidget {
   final List<BookMirror> mirrors;
@@ -22,9 +23,7 @@ class MirrorsList extends StatelessWidget {
           padding: EdgeInsets.all(16),
           child: Text(
             'Mirrors',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
+            style: AppStyle.titleMedium(),
           ),
         ),
         Divider(
@@ -113,7 +112,7 @@ class _AtomMirrorListTile extends StatelessWidget {
           children: [
             Text(
               mirror.label,
-              style: const TextStyle(
+              style: const AppStyle.bodyMedium(
                 color: Color.fromARGB(255, 212, 212, 212),
               ),
             ),

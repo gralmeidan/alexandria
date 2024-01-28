@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../styles/text.dart';
+
 class TitleSpan extends StatelessWidget {
   final String title;
   final TextStyle titleStyle;
@@ -19,16 +21,14 @@ class TitleSpan extends StatelessWidget {
     return RichText(
       text: TextSpan(
         text: title,
-        style: Theme.of(context).textTheme.titleLarge?.merge(titleStyle),
+        style: const AppStyle.titleLarge().merge(titleStyle),
         children: [
           if (edition != null && edition!.isNotEmpty)
             TextSpan(
               text: ' ($edition)',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleSmall
-                  ?.copyWith(color: Colors.grey)
-                  .merge(editionStyle),
+              style: const AppStyle.titleMedium(
+                color: Colors.grey,
+              ).merge(editionStyle),
             ),
         ],
       ),

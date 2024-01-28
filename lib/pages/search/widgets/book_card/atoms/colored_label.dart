@@ -28,12 +28,7 @@ class AtomColoredLabel extends StatelessWidget {
         color: Theme.of(context).colorScheme.primaryContainer,
         borderRadius: BorderRadius.circular(4),
       ),
-      child: Text(
-        label,
-        style: const TextStyle(
-          fontSize: 14,
-        ),
-      ),
+      child: Text(label),
     );
   }
 }

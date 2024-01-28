@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../components/components.dart';
 import '../../stores/search/results.store.dart';
+import '../../styles/text.dart';
 import 'widgets/book_card/book_card.dart';
 
 class SearchPage extends StatelessWidget {
@@ -38,9 +39,8 @@ class SearchPage extends StatelessWidget {
                       ),
                       child: Text(
                         group.key,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                        style: const AppStyle.titleLarge(
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),

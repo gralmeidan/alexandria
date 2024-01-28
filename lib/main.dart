@@ -6,6 +6,7 @@ import 'controllers/configs.dart';
 import 'routes/app_routes.dart';
 import 'stores/stores.dart';
 import 'styles/colors.dart';
+import 'styles/text.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,8 +39,10 @@ class MyApp extends StatelessWidget {
           appBarTheme: const AppBarTheme(
             color: Colors.transparent,
             foregroundColor: Colors.white,
+            scrolledUnderElevation: 0.0,
           ),
           scaffoldBackgroundColor: AppColors.background,
+          textTheme: const AppTextTheme(),
         ),
         initialRoute: AppRoutes.HOME,
         routes: AppRoutes.routes,

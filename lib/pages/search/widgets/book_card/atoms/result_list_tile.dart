@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lib_browser_extensions/models/search.dart';
 
+import '../../../../../styles/text.dart';
+
 class AtomResultListTile extends StatelessWidget {
   final BookSearchResult book;
   final VoidCallback? onTap;
@@ -44,18 +46,11 @@ class AtomResultListTile extends StatelessWidget {
                             children: [
                               TextSpan(
                                 text: book.title,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                ),
                               ),
                               if (book.edition.isNotEmpty)
                                 TextSpan(
                                   text: ' (${book.edition})',
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.normal,
-                                  ),
+                                  style: const AppStyle.subTitleSmall(),
                                 ),
                             ],
                           ),
@@ -63,10 +58,7 @@ class AtomResultListTile extends StatelessWidget {
                       ),
                       Text(
                         book.year.toString(),
-                        style: const TextStyle(
-                          color: Colors.grey,
-                          fontSize: 12,
-                        ),
+                        style: const AppStyle.subTitleSmall(),
                       ),
                     ],
                   ),
@@ -74,19 +66,13 @@ class AtomResultListTile extends StatelessWidget {
                     book.author.name,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 12,
-                    ),
+                    style: const AppStyle.subTitleSmall(),
                   ),
                   Text(
                     book.publisher,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 12,
-                    ),
+                    style: const AppStyle.subTitleSmall(),
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -95,18 +81,12 @@ class AtomResultListTile extends StatelessWidget {
                       Expanded(
                         child: Text(
                           '${book.pages} pages - ${book.language}',
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 12,
-                          ),
+                          style: const AppStyle.subTitleSmall(),
                         ),
                       ),
                       Text(
                         '${book.filesize} (${book.filetype})',
-                        style: const TextStyle(
-                          color: Colors.grey,
-                          fontSize: 12,
-                        ),
+                        style: const AppStyle.subTitleSmall(),
                       ),
                     ],
                   ),

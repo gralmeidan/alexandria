@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../styles/text.dart';
+
 class Hyperlink extends StatelessWidget {
   final String label;
   final VoidCallback? onPressed;
@@ -19,10 +21,10 @@ class Hyperlink extends StatelessWidget {
       child: Text(
         label,
         textAlign: textAlign,
-        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              color: Theme.of(context).colorScheme.primary,
-              fontWeight: FontWeight.w500,
-            ),
+        style: AppStyle.bodyLarge(
+          color: Theme.of(context).colorScheme.primary,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     );
   }

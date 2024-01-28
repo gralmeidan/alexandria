@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lib_browser_extensions/lib_browser_extensions.dart';
 
 import '../../../components/components.dart';
+import '../../../styles/text.dart';
 
 class BookHeaderInfo extends StatelessWidget {
   final BookDetails details;
@@ -34,16 +35,12 @@ class BookHeaderInfo extends StatelessWidget {
               if (details.publisher.isNotEmpty)
                 Text(
                   details.publisher,
-                  style: const TextStyle(
-                    color: Colors.grey,
-                  ),
+                  style: const AppStyle.subTitleMedium(),
                 ),
               if (details.author.name.isNotEmpty)
                 Text(
                   details.author.name,
-                  style: const TextStyle(
-                    color: Colors.grey,
-                  ),
+                  style: const AppStyle.subTitleMedium(),
                 ),
             ],
           ),
