@@ -33,6 +33,7 @@ dependencies:
   shared_preferences: ^2.2.2
   url_launcher: ^6.2.3
   permission_handler: ^11.2.0
+  epubx: ^4.0.0
 
 dev_dependencies:
   flutter_test:
