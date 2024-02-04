@@ -8,10 +8,10 @@ import '../../../details/details.page.dart';
 import 'atoms/colored_label.dart';
 import 'atoms/result_list_tile.dart';
 
-class BookCard extends StatelessWidget {
+class SearchBookCard extends StatelessWidget {
   final BookSearchGroup group;
 
-  const BookCard(
+  const SearchBookCard(
     this.group, {
     super.key,
   });

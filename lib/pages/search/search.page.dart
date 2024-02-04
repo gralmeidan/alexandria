@@ -53,7 +53,7 @@ class SearchPage extends StatelessWidget {
                         itemBuilder: (_, index) {
                           final books = group.value[index];
 
-                          return BookCard(
+                          return SearchBookCard(
                             books,
                           );
                         },
