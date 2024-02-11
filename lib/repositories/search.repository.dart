@@ -1,9 +1,9 @@
 import 'package:lib_browser_extensions/lib_browser_extensions.dart';
-import 'package:lib_browser_extensions/models/details.dart';
 
 class SearchRepository {
   static final List<SearchExtension> extensions = [
     LibGenExtension(),
+    LibGenLiExtension(),
   ];
 
   static Future<Map<String, List<BookSearchGroup>>> search(String query) async {
