@@ -8,11 +8,11 @@ class Hyperlink extends StatelessWidget {
   final TextAlign textAlign;
 
   const Hyperlink({
-    Key? key,
+    super.key,
     required this.label,
     required this.onPressed,
     this.textAlign = TextAlign.center,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

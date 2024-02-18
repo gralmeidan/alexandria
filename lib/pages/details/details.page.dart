@@ -16,7 +16,7 @@ class DetailsPage extends StatefulWidget {
     );
   }
 
-  const DetailsPage({Key? key}) : super(key: key);
+  const DetailsPage({super.key});
 
   @override
   State<DetailsPage> createState() => _DetailsPageState();

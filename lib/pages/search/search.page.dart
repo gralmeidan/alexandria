@@ -7,7 +7,7 @@ import '../../styles/text.dart';
 import 'widgets/book_card/book_card.dart';
 
 class SearchPage extends StatelessWidget {
-  const SearchPage({Key? key}) : super(key: key);
+  const SearchPage({super.key});
 
   @override
   Widget build(BuildContext context) {

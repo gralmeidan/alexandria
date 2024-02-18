@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../components/components.dart';
 import '../../stores/stores.dart';
-import 'widgets/library_app_bar.dart';
-import 'widgets/library_book_card.dart';
+import 'widgets/widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

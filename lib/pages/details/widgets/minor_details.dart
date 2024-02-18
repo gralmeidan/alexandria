@@ -8,8 +8,8 @@ class MinorDetails extends StatelessWidget {
 
   const MinorDetails({
     required this.details,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   static const _divider = Padding(
     padding: EdgeInsets.symmetric(horizontal: 18),
@@ -58,8 +58,7 @@ class _AtomWithLabel extends StatelessWidget {
   const _AtomWithLabel(
     this.child, {
     required this.label,
-    Key? key,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

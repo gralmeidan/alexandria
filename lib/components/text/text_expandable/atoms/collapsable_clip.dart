@@ -8,13 +8,13 @@ class AtomCollapsableClip extends StatefulWidget {
   final Curve curve;
 
   const AtomCollapsableClip({
-    Key? key,
+    super.key,
     required this.child,
     required this.controller,
     this.padding = 0,
     this.nonCollapsedHeight = 116,
     this.curve = Curves.easeInOutCubic,
-  }) : super(key: key);
+  });
 
   @override
   State<AtomCollapsableClip> createState() => _AtomCollapsableClipState();

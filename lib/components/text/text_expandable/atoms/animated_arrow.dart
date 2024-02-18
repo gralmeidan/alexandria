@@ -5,10 +5,10 @@ class AtomAnimatedArrow extends StatefulWidget {
   final Curve curve;
 
   const AtomAnimatedArrow({
-    Key? key,
+    super.key,
     required this.controller,
     this.curve = Curves.easeInOutCubic,
-  }) : super(key: key);
+  });
 
   @override
   State<AtomAnimatedArrow> createState() => _AtomAnimatedArrowState();

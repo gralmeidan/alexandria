@@ -9,8 +9,8 @@ class BookHeaderInfo extends StatelessWidget {
 
   const BookHeaderInfo({
     required this.details,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

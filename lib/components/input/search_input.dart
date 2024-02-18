@@ -7,12 +7,12 @@ class SearchInput extends StatelessWidget {
   final bool autofocus;
 
   const SearchInput({
-    Key? key,
+    super.key,
     required this.controller,
     this.onChanged,
     this.onSubmitted,
     this.autofocus = true,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

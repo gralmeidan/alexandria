@@ -7,9 +7,9 @@ class LibraryAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
 
   const LibraryAppBar({
-    Key? key,
+    super.key,
     this.title = 'Title',
-  }) : super(key: key);
+  });
 
   @override
   State<LibraryAppBar> createState() => _LibraryAppBarState();

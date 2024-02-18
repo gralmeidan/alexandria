@@ -9,8 +9,8 @@ class TextExpandable extends StatefulWidget {
 
   const TextExpandable(
     this.text, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<TextExpandable> createState() => _TextExpandableState();
