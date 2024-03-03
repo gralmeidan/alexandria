@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../components/components.dart';
 import '../../stores/stores.dart';
+import '../reader/reader.dart';
 import 'widgets/widgets.dart';
 
 class HomePage extends StatefulWidget {
@@ -59,6 +60,15 @@ class _MyHomePageState extends State<HomePage> {
                         cover: book.cover!,
                         title: book.title ?? '',
                         author: book.author ?? '',
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ReaderPage(book: book.content!);
+                              },
+                            ),
+                          );
+                        },
                       );
                     },
                   );

@@ -56,6 +56,7 @@ class BookshelfCubit extends Cubit<BookshelfState> {
         books.add(
           EpubReader.readBook(file.readAsBytesSync()).then((epub) async {
             return Book(
+              content: epub,
               title: epub.Title,
               author: epub.Author,
               path: fileEntity.path,
