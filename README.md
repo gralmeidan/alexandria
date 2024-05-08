@@ -1,16 +1,36 @@
-# alexandria
+# Alexandria
 
-A new Flutter project.
+Aplicativo Flutter para pesquisa e leitura de e-books.
 
-## Getting Started
+## Pré-requisitos
 
-This project is a starting point for a Flutter application.
+Antes de começar, certifique-se de ter instalado o Flutter e as dependências necessárias.
 
-A few resources to get you started if this is your first Flutter project:
+## Instalação
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Siga as etapas abaixo para instalar e executar o projeto:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Clone o repositório `alexandria` e `alexandria_ext`:
+
+```bash
+git clone https://github.com/gralmeidan/alexandria.git
+git clone https://github.com/gralmeidan/alexandria_ext.git
+```
+
+2. Navegue até o diretório `alexandria`:
+
+```bash
+cd alexandria
+```
+
+3. Instale as dependências:
+
+```bash
+flutter pub get
+```
+
+4. Execute o aplicativo:
+
+```bash
+flutter run
+```
